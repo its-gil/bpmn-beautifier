@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                   xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                   xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+                   xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+                   id="Definitions_1"
+                   targetNamespace="http://example.bpmn">
+  <bpmn2:process id="Process_1" isExecutable="false">
+ 
+    <bpmn2:startEvent id="StartEvent_1" name="Start">
+      <bpmn2:outgoing>Flow_1</bpmn2:outgoing>
+    </bpmn2:startEvent>
+ 
+    <bpmn2:task id="Task_1" name="Check Condition">
+      <bpmn2:incoming>Flow_1</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_2</bpmn2:outgoing>
+    </bpmn2:task>
+ 
+    <bpmn2:exclusiveGateway id="XOR_1" name="Decision">
+      <bpmn2:incoming>Flow_2</bpmn2:incoming>
+      <bpmn2:incoming>Flow_4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_3</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_5</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+ 
+    <bpmn2:task id="Task_2" name="Rework">
+      <bpmn2:incoming>Flow_3</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_4</bpmn2:outgoing>
+    </bpmn2:task>
+ 
+    <bpmn2:endEvent id="EndEvent_1" name="End">
+      <bpmn2:incoming>Flow_5</bpmn2:incoming>
+    </bpmn2:endEvent>
+ 
+    <!-- Flows -->
+    <bpmn2:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_1"/>
+    <bpmn2:sequenceFlow id="Flow_2" sourceRef="Task_1" targetRef="XOR_1"/>
+    <bpmn2:sequenceFlow id="Flow_3" sourceRef="XOR_1" targetRef="Task_2"/>
+    <bpmn2:sequenceFlow id="Flow_4" sourceRef="Task_2" targetRef="XOR_1"/>
+    <bpmn2:sequenceFlow id="Flow_5" sourceRef="XOR_1" targetRef="EndEvent_1"/>
+ 
+  </bpmn2:process>
+ 
+  <!-- Diagram -->
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+ 
+      <bpmndi:BPMNShape id="Shape_Start" bpmnElement="StartEvent_1">
+        <dc:Bounds x="100" y="100" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+ 
+      <bpmndi:BPMNShape id="Shape_Task1" bpmnElement="Task_1">
+        <dc:Bounds x="200" y="85" width="100" height="70"/>
+      </bpmndi:BPMNShape>
+ 
+      <bpmndi:BPMNShape id="Shape_XOR1" bpmnElement="XOR_1" isMarkerVisible="true">
+        <dc:Bounds x="370" y="100" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+ 
+      <bpmndi:BPMNShape id="Shape_Task2" bpmnElement="Task_2">
+        <dc:Bounds x="500" y="40" width="100" height="70"/>
+      </bpmndi:BPMNShape>
+ 
+      <bpmndi:BPMNShape id="Shape_End" bpmnElement="EndEvent_1">
+        <dc:Bounds x="500" y="160" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+ 
+      <!-- Edges -->
+      <bpmndi:BPMNEdge id="Edge_Flow1" bpmnElement="Flow_1">
+        <di:waypoint x="136" y="118"/>
+        <di:waypoint x="200" y="118"/>
+      </bpmndi:BPMNEdge>
+ 
+      <bpmndi:BPMNEdge id="Edge_Flow2" bpmnElement="Flow_2">
+        <di:waypoint x="300" y="118"/>
+        <di:waypoint x="370" y="125"/>
+      </bpmndi:BPMNEdge>
+ 
+      <bpmndi:BPMNEdge id="Edge_Flow3" bpmnElement="Flow_3">
+        <di:waypoint x="420" y="125"/>
+        <di:waypoint x="500" y="75"/>
+      </bpmndi:BPMNEdge>
+ 
+      <bpmndi:BPMNEdge id="Edge_Flow4" bpmnElement="Flow_4">
+        <di:waypoint x="600" y="75"/>
+        <di:waypoint x="395" y="100"/>
+      </bpmndi:BPMNEdge>
+ 
+      <bpmndi:BPMNEdge id="Edge_Flow5" bpmnElement="Flow_5">
+        <di:waypoint x="420" y="125"/>
+        <di:waypoint x="500" y="178"/>
+      </bpmndi:BPMNEdge>
+ 
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

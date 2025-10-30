@@ -1,0 +1,9 @@
+SEQ(
+  EVENT(StartEvent_0y5qx3s),
+  TASK(Activity_1els1mg|event),
+  XOR(
+    TASK(Activity_0uxc2y7|event2a),
+    TASK(Activity_06dia45|event2b),
+  ),
+  EVENT(Event_1bkdvm5),
+)

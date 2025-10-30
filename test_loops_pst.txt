@@ -1,0 +1,13 @@
+SEQ(
+  EVENT(StartEvent_1|Start),
+  TASK(Task_1|Check Condition),
+  XOR(
+    LOOP(
+      NULL(None),
+      SEQ(
+        TASK(Body_of_XOR_1|Decision),
+      ),
+    ),
+    EVENT(EndEvent_1|End),
+  ),
+)
